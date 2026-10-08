@@ -1,0 +1,7 @@
+{
+  "markdown.marp.themes": [
+    "./themes/ainews-light.css",
+    "./themes/ainews-navy.css"
+  ],
+  "markdown.marp.html": "all"
+}

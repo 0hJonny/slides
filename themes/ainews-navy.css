@@ -1,0 +1,103 @@
+/* @theme ainews-navy */
+/* Navy (dark) theme based on the AI News Platform site */
+
+@import 'default';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+JP:wght@400;700;900&family=JetBrains+Mono:wght@400&display=swap');
+
+:root {
+  --bg: #090d1f;
+  --text: #ffffff;
+  --muted: #c0c5d0;
+  --accent: #9365ff;
+  --pill-bg: #2a2350;
+  --pill-text: #c4b5fd;
+  --code-bg: #161b30;
+  --line: #2b3150;
+}
+
+section {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-size: 26px;
+  padding: 56px 72px;
+  /* The default theme centers content vertically. Pin it to the top-left instead
+     (depending on the Marp version it centers via flex or block, so override both). */
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-content: flex-start !important;
+  align-items: stretch !important;
+}
+
+h1, h2, h3 { color: var(--text); font-weight: 800; }
+h2 { font-size: 38px; margin: 0 0 24px; }
+a { color: var(--accent); text-decoration: none; }
+em { color: var(--accent); font-style: normal; font-weight: 700; }
+strong { color: var(--text); }
+
+footer, section::after {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+code { background: var(--code-bg); color: var(--text); border-radius: 4px; }
+pre { background: var(--code-bg); border-radius: 12px; font-size: 18px; }
+pre code { background: transparent; color: var(--text); }
+.hljs-keyword, .hljs-built_in { color: var(--accent); }
+.hljs-comment { color: var(--muted); font-style: normal; }
+.hljs-string, .hljs-number { color: #fdb022; }
+
+table { border-collapse: collapse; font-size: 22px; }
+table th, table td {
+  background: transparent !important;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  padding: 6px 18px 6px 0;
+  text-align: left;
+}
+table th { font-weight: 700; color: var(--muted); }
+/* Remove the default white rows and zebra stripes (they turn white on the dark theme) */
+table, table thead, table tbody, table tr, table tr:nth-child(2n) { background: transparent !important; }
+table td { color: var(--text); }
+/* The default theme also draws a light top border on every row: keep only our own lines */
+table tr { border: none !important; }
+table { border: none !important; }
+/* The profile table has no header row */
+section.profile table thead { display: none; }
+/* Let the profile table take the remaining width and wrap long text */
+section.profile .row table { display: table; flex: 1; min-width: 0; width: auto; max-width: none; }
+section.profile .row td { white-space: normal; }
+section.profile .row td:first-child { white-space: nowrap; color: var(--muted); }
+
+ol li::marker { color: var(--accent); font-weight: 700; }
+ul li::marker { color: var(--muted); }
+
+/* Pill, same as the tags on the site */
+.pill {
+  display: inline-block;
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  border-radius: 999px;
+  padding: 2px 16px;
+  font-size: 18px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+h2 .pill { margin-left: 12px; }
+
+/* Title slide */
+section.title { justify-content: center !important; }
+section.title h1 { font-size: 56px; line-height: 1.3; margin: 0 0 24px; }
+section.title p { font-size: 18px; color: var(--muted); margin: 2px 0; }
+
+/* Section divider */
+section.section { justify-content: center !important; }
+section.section h1 { font-size: 72px; margin: 12px 0 0; }
+
+/* Profile slide */
+section.profile .row { display: flex; gap: 48px; align-items: flex-start; }
+section.profile img.avatar { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; background: var(--code-bg); flex-shrink: 0; }
+
+.note { font-size: 18px; color: var(--muted); }

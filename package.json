@@ -1,0 +1,11 @@
+{
+  "name": "lt-slides",
+  "private": true,
+  "scripts": {
+    "build": "./build.sh html",
+    "build:pdf": "./build.sh pdf"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.5.1"
+  }
+}
