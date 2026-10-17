@@ -40,17 +40,24 @@ build_talk() {
   out="dist/$name"
   mkdir -p "$out"
   [ -d "$dir/img" ] && rm -rf "$out/img" && cp -r "$dir/img" "$out/img"
+  # Replace <!-- qr: id --> markers with QR codes from links.yml.
+  # The result is dist/<talk>/slides.md, next to the copied img/,
+  # so relative paths (img/..., ../_shared/...) still work.
+  rm -rf "$out/qr"
+  node scripts/qr.mjs "$dir" "$out"
   for theme in "${THEMES[@]}"; do
     for fmt in "${FORMATS[@]}"; do
-      "$MARP" "$dir/slides.md" \
+      "$MARP" "$out/slides.md" \
         --theme-set ./themes \
         --theme "$theme" \
         --html \
         --allow-local-files \
+        --no-stdin \
         "--$fmt" \
         -o "$out/${theme#ainews-}.$fmt"
     done
   done
+  rm -f "$out/slides.md"
 }
 
 for dir in talks/*/; do

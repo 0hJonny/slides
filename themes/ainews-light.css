@@ -101,3 +101,39 @@ section.profile .row { display: flex; gap: 48px; align-items: flex-start; }
 section.profile img.avatar { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; background: var(--code-bg); flex-shrink: 0; }
 
 .note { font-size: 18px; color: var(--muted); }
+
+/* QR codes in the bottom-right corner (inserted by scripts/qr.mjs from links.yml) */
+section { --qr-bg: #ffffff; --qr-fg: #1a1a1a; --qr-eye: #6941c6; }
+.qr-corner {
+  position: absolute;
+  bottom: 56px;
+  right: 72px;
+  display: flex;
+  gap: 14px;
+}
+.qr-corner .qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+.qr-corner svg {
+  display: block;
+  width: 132px;
+  height: 132px;
+  border-radius: 14px;
+  box-shadow: 0 0 0 1px var(--line);
+}
+.qr-corner .qr-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--pill-text);
+  background: var(--pill-bg);
+  border-radius: 999px;
+  padding: 1px 10px;
+}
+/* On a title slide the QR is the call to action: bigger */
+section.title .qr-corner { bottom: 64px; }
+section.title .qr-corner svg { width: 200px; height: 200px; border-radius: 18px; }
+section.title .qr-corner .qr-label { font-size: 16px; }

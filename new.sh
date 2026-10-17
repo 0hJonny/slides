@@ -7,5 +7,6 @@ DEST="talks/$NAME"
 if [ -e "$DEST" ]; then echo "$DEST already exists" >&2; exit 1; fi
 mkdir -p "$DEST/img"
 cp talks/_template/slides.md "$DEST/slides.md"
+cp talks/_template/links.yml "$DEST/links.yml"
 touch "$DEST/img/.gitkeep"
 echo "Created $DEST/slides.md"

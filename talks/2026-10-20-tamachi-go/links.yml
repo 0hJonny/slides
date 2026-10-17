@@ -1,0 +1,11 @@
+# QR codes for this talk.
+# On a slide:  <!-- qr: pr5774 -->   (several ids: <!-- qr: pr5585 pr5602 -->)
+# The label under the code is made from the URL ("PR #5774", "issue #5767");
+# set it yourself with   id: { url: ..., label: ... }
+pr5585: https://github.com/tinygo-org/tinygo/pull/5585
+pr5602: https://github.com/tinygo-org/tinygo/pull/5602
+pr5774: https://github.com/tinygo-org/tinygo/pull/5774
+pr5783: https://github.com/tinygo-org/tinygo/pull/5783
+badge:
+  url: https://github.com/0hJonny/tinygo-lilygo-badge
+  label: tinygo-lilygo-badge

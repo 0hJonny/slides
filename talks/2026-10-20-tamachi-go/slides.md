@@ -130,12 +130,14 @@ case mask&esp.I2C_INT_STATUS_NACK_INT_ST_Msk != 0 && !readLast:
 原因は二つありました。
 一つ目、読み込みコマンドに ack_en が付いていました。そのため、読み込みが成功しても NACK が出ていました。
 二つ目、読み込みの NACK は無視されていました。
-その結果、本当に誰もいないときの NACK も無視されました。
+その結果、本当に誰もいないときの NACK も無視されていました。
 -->
 
 ---
 
 ## 前の修正 <span class="pill">#5585</span> <span class="pill">#5602</span>
+
+<!-- qr: pr5585 pr5602 -->
 
 - 古い ESP32 では、同じバグがもう直っていた（#5585）
 - 同じ修正を ESP32xx にコピー → *revert* された（#5602）
@@ -144,7 +146,7 @@ case mask&esp.I2C_INT_STATUS_NACK_INT_ST_Msk != 0 && !readLast:
 <!--
 古い ESP32 では、同じバグがもう直っていました。
 同じ修正が ESP32xx にもコピーされましたが、revert されました。
-だから、このコードはそのまま残っていました。
+ですから、このコードはそのまま残っていました。
 -->
 
 ---
@@ -184,6 +186,8 @@ ESP-IDF も、読み込みに ack_en を付けていません。
 ---
 
 ## 修正 <span class="pill">PR #5774</span>
+
+<!-- qr: pr5774 -->
 
 1. 読み込みに `ack_en` を付けない → *NACK は全部エラーとして返す*
 2. アドレスを別の WRITE コマンドで送る → アドレスの NACK のあと固まらない
@@ -233,6 +237,8 @@ ESP32-S3 でテストして、マージされました！
 
 ## 解決 <span class="pill">PR #5783</span>
 
+<!-- qr: pr5783 -->
+
 - `Configure()` で *バスクリア* を追加：SDA が LOW の間 SCL をクロック → GPIO で STOP
 - ESP-IDF v4.4.8 の `i2c_master_clear_bus` と同じ方法
 - 私が GT911 で試した方法（9クロック + GPIO STOP）とも一致
@@ -276,6 +282,8 @@ NACK を無視すると、本当の NACK も見えなくなります。
 ご清聴ありがとうございました
 0hJonny — [@0hJonny](https://x.com/0hJonny)
 [github.com/0hJonny/tinygo-lilygo-badge](https://github.com/0hJonny/tinygo-lilygo-badge)
+
+<!-- qr: badge -->
 
 <!--
 でも、今度はちゃんと届けました！

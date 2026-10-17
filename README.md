@@ -9,11 +9,13 @@ themes/ainews-navy.css       navy background #090d1f, accent #9365ff
 talks/
   2026-10-20-tamachi-go/     one folder per talk
     slides.md
+    links.yml                QR code links (id -> URL)
     img/
   _template/slides.md        starting point for a new talk
   _shared/                   files used by every talk (avatar.png)
 new.sh                       creates a new talk from the template
 build.sh                     builds all talks in both themes + index page
+scripts/qr.mjs               turns <!-- qr: id --> markers into QR codes
 package.json                 pins the Marp CLI version
 .github/workflows/           CI: builds HTML + PDF and publishes to GitHub Pages
 .vscode/settings.json        registers the themes for the Marp preview in VS Code
@@ -44,7 +46,7 @@ If the preview still shows an old version of a theme, run
 ## Build locally
 
 ```bash
-npm ci                                 # once, installs the local Marp CLI
+npm ci                                 # once, installs Marp CLI + QR libs
 ./build.sh                             # all talks as HTML
 ./build.sh pdf                         # all talks as PDF (needs Chrome)
 ./build.sh all                         # HTML + PDF
@@ -68,6 +70,37 @@ bright office with a projector -> light, dark room -> navy.
 <span class="pill">PR #5774</span>   pill, same as the tags on the site
 *text*                               highlight in the accent color
 ```
+
+## QR codes
+
+Put the links of a talk in `talks/<talk>/links.yml`:
+
+```yaml
+pr5774: https://github.com/tinygo-org/tinygo/pull/5774   # label: "PR #5774"
+badge:
+  url: https://github.com/0hJonny/tinygo-lilygo-badge
+  label: tinygo-lilygo-badge                            # own label
+```
+
+Then put a marker on the slide:
+
+```markdown
+## 修正 <span class="pill">PR #5774</span>
+
+<!-- qr: pr5774 -->
+<!-- qr: pr5585 pr5602 -->   several codes side by side
+```
+
+`build.sh` runs `scripts/qr.mjs` before Marp: every marker becomes a QR
+code in the bottom-right corner (bigger on a `title` slide), with the
+label under it. The code is drawn as inline SVG — rounded modules and
+eyes in the accent color on a white card — and the colors come from the
+theme (`--qr-bg`, `--qr-fg`, `--qr-eye`), so it fits light and navy.
+Each code is also saved as `dist/<talk>/qr/<id>.svg`.
+
+An unknown id stops the build; an unused link only prints a warning.
+The VS Code preview does not show QR codes (the marker is an HTML
+comment there) — check them in the built HTML/PDF.
 
 ## GitHub Actions and Pages
 
