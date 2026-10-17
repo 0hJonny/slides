@@ -303,3 +303,5 @@ NACK を無視すると、本当の NACK も見えなくなります。
 - PR #5585 / #5602：古い ESP32 の修正と、ESP32xx へのコピーの revert
 - ESP-IDF v4.4.8 `driver/i2c.c`
   [github.com/espressif/esp-idf/blob/v4.4.8/components/driver/i2c.c](https://github.com/espressif/esp-idf/blob/v4.4.8/components/driver/i2c.c)
+
+<span class="note">Go gopher の原作：Renée French（CC BY 4.0）。イラストはそれをもとに生成</span>
