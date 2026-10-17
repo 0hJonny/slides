@@ -137,3 +137,12 @@ section { --qr-bg: #ffffff; --qr-fg: #090d1f; --qr-eye: #6941c6; }
 section.title .qr-corner { bottom: 64px; }
 section.title .qr-corner svg { width: 200px; height: 200px; border-radius: 18px; }
 section.title .qr-corner .qr-label { font-size: 16px; }
+
+/* Split background (![bg right ...]): same 72px right margin as the text on the left,
+   so the picture does not stick to the slide edge */
+section[data-marpit-advanced-background="background"][data-marpit-advanced-background-split] figure {
+  /* !important: Marp resets this figure with a more specific `all: initial` rule */
+  box-sizing: border-box !important;
+  padding: 56px 72px 64px 16px !important;
+  background-origin: content-box !important;
+}
