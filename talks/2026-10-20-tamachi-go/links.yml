@@ -12,3 +12,6 @@ badge:
 x:
   url: https://x.com/0hJonny
   label: "@0hJonny"
+slides:
+  url: https://0hjonny.github.io/slides/2026-10-20-tamachi-go/light.pdf
+  label: slides

@@ -285,7 +285,7 @@ NACK を無視すると、本当の NACK も見えなくなります。
 0hJonny — [@0hJonny](https://x.com/0hJonny)
 [github.com/0hJonny/tinygo-lilygo-badge](https://github.com/0hJonny/tinygo-lilygo-badge)
 
-<!-- qr: badge -->
+<!-- qr: slides badge -->
 
 <!--
 でも、今度はちゃんと届けました！
