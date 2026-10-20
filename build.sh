@@ -15,6 +15,8 @@
 set -euo pipefail
 
 FORMAT="${1:-html}"
+# Public base URL, used for og:image / canonical links in the HTML.
+SITE_URL="${SITE_URL:-https://0hjonny.github.io/slides}"
 ONLY="${2:-}"
 MARP="./node_modules/.bin/marp"
 THEMES=(ainews-light ainews-navy)
@@ -45,6 +47,17 @@ build_talk() {
   # so relative paths (img/..., ../_shared/...) still work.
   rm -rf "$out/qr"
   node scripts/qr.mjs "$dir" "$out"
+
+  # Share-card metadata (X / Slack / LINE previews):
+  # title from the first "# " heading without <br>, og.png = first slide (light theme)
+  local title
+  title="$(grep -m1 '^# ' "$dir/slides.md" | sed -e 's/^# //' -e 's/<br>/ /g')"
+  local meta=(--title "$title" --description "$title" --og-image "$SITE_URL/$name/og.png")
+  "$MARP" "$out/slides.md" \
+    --theme-set ./themes --theme ainews-light \
+    --html --allow-local-files --no-stdin \
+    --image png -o "$out/og.png"
+
   for theme in "${THEMES[@]}"; do
     for fmt in "${FORMATS[@]}"; do
       "$MARP" "$out/slides.md" \
@@ -53,6 +66,7 @@ build_talk() {
         --html \
         --allow-local-files \
         --no-stdin \
+        "${meta[@]}" \
         "--$fmt" \
         -o "$out/${theme#ainews-}.$fmt"
     done
