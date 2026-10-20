@@ -3,6 +3,7 @@ marp: true
 theme: ainews-light
 paginate: true
 footer: "tamachi.go #2"
+description: TinyGo の ESP32-S3 で I2C の NACK が無視され、読み込みが nil を返していたバグを直した話
 ---
 
 <!-- _class: title -->
