@@ -25,6 +25,8 @@ tamachi.go #2
 
 ## 自己紹介
 
+<!-- qr: x -->
+
 <div class="row">
 
 <img class="avatar" src="../_shared/avatar.png">
